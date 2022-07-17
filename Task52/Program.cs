@@ -14,54 +14,52 @@ namespace Seminar7
         {
             int m = new Random().Next(1, 11);
             int n = new Random().Next(1, 11);
-            Console.WriteLine($"m = {m}, n = {n}");
+            Console.WriteLine($"m -число строк = {m}, n - число столбцов = {n}");
             int[,] array = new int[m, n];
-            FillArray(array);
-            PrintArray(array);
-            Console.WriteLine("Сумма чисел главной диагонали:");
-            Console.WriteLine(SumHeadDiagonal(array));
+            Fill2dArray(array);
+            Print2dArray(array);
+            Console.WriteLine("Среднее арифметическое столбцов");
+            SumColumnAverege(array);
         }
 
-        static void FillArray(int[,] array)
+        static void Fill2dArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i,j] = new Random().Next(1,10);
+                    array[i, j] = new Random().Next(1, 10);
                 }
             }
         }
 
-        static void PrintArray(int[,] array)
+        static void Print2dArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write(array[i,j] + " ");
+                    Console.Write(array[i, j] + "   ");
                 }
                 Console.WriteLine();
             }
         }
-        static int SumHeadDiagonal(int[,] array)
+        static void SumColumnAverege(int[,] array)
         {
-            int sum = 0;
-            // for (int i = 0; i < array.GetLength(0); i++)
-            // {
-            //     for (int j = 0; j < array.GetLength(1); j++)
-            //     {
-            //         if(i == j) sum+= array[i,j];
-            //     }
-            // }
-            for (int i = 0; i < array.GetLength(0) && i < array.GetLength(1); i++)
+            double sum = 0;
+            double count = array.GetLength(0);
+
+            for (int i = 0; i < array.GetLength(1); i++)
             {
-                
-                    sum+= array[i,i];
+                for (int j = 0; j < array.GetLength(0); j++)
+                {
+                    sum = sum +array[j, i];
+
+                }
+                sum = Math.Round(sum/count, 1);
+                Console.Write($"{sum} ");
             }
-                
-            return sum;
         }
-        
+
     }
 }
