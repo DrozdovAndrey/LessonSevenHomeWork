@@ -1,4 +1,5 @@
-﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+// и возвращает значение этого элемента или же указание, что такого элемента нет.
 
 // Например, задан массив:
 
@@ -18,12 +19,18 @@ namespace Seminar7
         {
             int m = new Random().Next(1, 11);
             int n = new Random().Next(1, 11);
-            Console.WriteLine($"m = {m}, n = {n}");
             int[,] array = new int[m, n];
             FillArray(array);
+            Console.WriteLine("Введите позицию элемента в двумерном массиве.");
+            Console.WriteLine("номер строки (от 1 до 10):");
+            int str = CheckInputNumbers();
+            Console.WriteLine("номер столбца (от 1 до 10):");
+            int column = CheckInputNumbers();
+            Console.WriteLine($"Случайно сгенерированный двумерный массив с количеством строк {m} и коллличеством столбцов {n}");
             PrintArray(array);
-            Console.WriteLine("Сумма чисел главной диагонали:");
-            Console.WriteLine(SumHeadDiagonal(array));
+            if (str > array.GetLength(0) || column > array.GetLength(1)) Console.WriteLine("Такого элемента нет!");
+            else Console.WriteLine($"Такаой элемент есть и равен: {array[str - 1, column - 1]}");
+
         }
 
         static void FillArray(int[,] array)
@@ -32,7 +39,7 @@ namespace Seminar7
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i,j] = new Random().Next(1,10);
+                    array[i, j] = new Random().Next(1, 10);
                 }
             }
         }
@@ -43,29 +50,20 @@ namespace Seminar7
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write(array[i,j] + " ");
+                    Console.Write(array[i, j] + " ");
                 }
                 Console.WriteLine();
             }
         }
-        static int SumHeadDiagonal(int[,] array)
+        static int CheckInputNumbers()
         {
-            int sum = 0;
-            // for (int i = 0; i < array.GetLength(0); i++)
-            // {
-            //     for (int j = 0; j < array.GetLength(1); j++)
-            //     {
-            //         if(i == j) sum+= array[i,j];
-            //     }
-            // }
-            for (int i = 0; i < array.GetLength(0) && i < array.GetLength(1); i++)
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number) || number > 10 || number < 1)
             {
-                
-                    sum+= array[i,i];
+                Console.WriteLine("Ошибка ввода! Введите целое число от 1 до 10 ");
             }
-                
-            return sum;
+            return number;
+
         }
-        
     }
 }
