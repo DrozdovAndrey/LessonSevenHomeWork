@@ -11,10 +11,11 @@
 
 // 17 -> такого числа в массиве нет
 
-namespace Seminar7
+namespace Homework7
 {
-    class Task1
+    class Task50
     {
+        
         static void Main(string[] args)
         {
             int m = new Random().Next(1, 11);
@@ -65,5 +66,6 @@ namespace Seminar7
             return number;
 
         }
+
     }
 }
