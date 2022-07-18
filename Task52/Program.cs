@@ -6,9 +6,9 @@
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-namespace Seminar7
+namespace SHomework7
 {
-    class Task1
+    class Task52
     {
         static void Main(string[] args)
         {
